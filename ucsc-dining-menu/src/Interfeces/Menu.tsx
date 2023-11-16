@@ -1,14 +1,17 @@
 export interface MenuItems {
-    name: string,
+    itemName: string,
     price?: string,
-    traits?: string[] 
-    recipes?: string[]
-}  
+    traits?: string[],
+    recipes?: string[],
+    type?: string
+}
 
-export interface MenuItemListProp {
-    breakfast?: MenuItems[],
-    lunch?: MenuItems[],
-    dinner?: MenuItems[],
-    lateNight?: MenuItems[],
-    menu?: MenuItems[]
+export interface MenuCats {
+    catName: string,
+    menuItem?: MenuItems[]
+}
+
+export interface MenuItemMeals {
+    mealName: string,
+    menuCat?: MenuCats[]
 }

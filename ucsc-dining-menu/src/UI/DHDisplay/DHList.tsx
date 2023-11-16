@@ -16,8 +16,7 @@ const DHList: React.FC<{item: Item[], navigation: any }>= ({ item, navigation}) 
     onPress={
      async ()=> {
         await fetchMenuItem(item.locationURL!, setMenuItem);
-        navigation.navigate('Location', {title: item.name}) 
-        console.log(item.locationURL)
+        navigation.navigate('Location', {title: item.name})  
         }
       }>
       <View style={styles.rowFront}>

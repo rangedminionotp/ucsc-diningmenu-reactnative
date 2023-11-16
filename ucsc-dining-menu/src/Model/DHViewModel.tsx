@@ -1,14 +1,14 @@
 import React, { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 import { DHlocations } from '../Interfeces/DH';
-import { MenuItems } from '../Interfeces/Menu';
+import { MenuItemMeals } from '../Interfeces/Menu';
 
 interface DHViewModelProps {
   children: ReactNode;
 }
 
 export interface DHContextProps {
-  MenuItem: MenuItems[];
-  setMenuItem: Dispatch<SetStateAction<MenuItems[]>>; 
+  MenuItem: MenuItemMeals[];
+  setMenuItem: Dispatch<SetStateAction<MenuItemMeals[]>>; 
   DH: DHlocations[],
   setDH: Dispatch<SetStateAction<DHlocations[]>>;
   CurrDH : string,
@@ -27,7 +27,7 @@ const initialContext: DHContextProps = {
 export const DHContext = createContext<DHContextProps>(initialContext);
 
 export const DHViewModel: React.FC<DHViewModelProps> = (props) => {
-  const [MenuItem, setMenuItem] = useState<MenuItems[]>([]); 
+  const [MenuItem, setMenuItem] = useState<MenuItemMeals[]>([]); 
   const [DH, setDH] = useState<DHlocations[]>([]); 
   const [CurrDH, setCurrDH] = useState<string>(''); 
   return (

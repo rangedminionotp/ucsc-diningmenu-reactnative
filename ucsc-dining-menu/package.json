@@ -26,7 +26,8 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "*",
     "react-native-swipe-list-view": "*",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "react-native-breadcrumb": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
