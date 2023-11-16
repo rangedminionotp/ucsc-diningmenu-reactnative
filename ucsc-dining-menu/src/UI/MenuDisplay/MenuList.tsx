@@ -7,10 +7,17 @@ const MenuList: React.FC<{data: any, navigation: any }> = ({ data, navigation })
 
   const renderItem = ({ item }: { item: MenuItemMeals }) => (
     <View>
-      <Text>{item.mealName}</Text> 
-      {item.menuCat && item.menuCat.length > 0 && (
-        <Text>{item.menuCat[0].catName}</Text>
-      )}
+      <Text>{item.mealName}</Text>
+      {item.menuCat &&
+        item.menuCat.map((cat) => (
+          <View>
+            <Text>{cat.catName}</Text>
+            {cat.menuItem &&
+              cat.menuItem.map((menuItem) => (
+                <Text>{menuItem.itemName}</Text>
+              ))}
+          </View>
+        ))}
     </View>
   );
 
