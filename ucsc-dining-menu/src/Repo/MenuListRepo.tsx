@@ -16,9 +16,7 @@ export const fetchMenuItem = async (
       const $ = cheerio.load(htmlContent); 
       const titleArray: string[] = [];
       const catArray: string[] = [];
-      const allItem: string[] = [];
-      // Select all div elements with class shortmenumeals
- 
+      const allItem: string[] = []; 
       const menuList = $('td div').slice(6);   
       const shortmenumeals = $('td div.shortmenumeals');   
       const shortmenucats = $('td div.shortmenucats'); 
@@ -39,42 +37,19 @@ export const fetchMenuItem = async (
          if (text !== "") {
             allItem.push(text);
         }
-      });  
+      });
+      allItem.pop()
       let menuitem : MenuItems[] = []
       let menucat : MenuCats[] = []
       let res : MenuItemMeals[] = [] 
       let currCat = ''
-      let currMeal = ''
-      // allItem
-      //     .map((element: string) => {   
-      //       const anchor = element;  
-      //       if (titleArray.includes(anchor)){ 
-      //           // res.push({mealName: anchor, menuCat: menucat})
-      //           // menucat = [] 
-      //           currMeal = anchor;
-      //         }  
-      //        else if (catArray.includes(anchor)){ 
-      //           // menucat.push({catName: anchor, menuItem: menuitem})
-      //           // menuitem = [] 
-      //           currCat = anchor; 
-      //       } else {
-      //         menuitem.push({itemName: anchor});
-      //       } 
-      //     }) 
-      // setMenuItems(
-      //   res
-      // ); 
+      let currMeal = '' 
       for (let i = 0; i < allItem.length; i++){
-        const anchor = allItem[i]
-        // console.log(anchor)
-        if (titleArray.includes(anchor)){ 
-                    // res.push({mealName: anchor, menuCat: menucat})
-                    // menucat = [] 
+        const anchor = allItem[i] 
+        if (titleArray.includes(anchor)){  
           currMeal = anchor;
           }  
-          else if (catArray.includes(anchor)){ 
-            // menucat.push({catName: anchor, menuItem: menuitem})
-            // menuitem = [] 
+          else if (catArray.includes(anchor)){  
             currCat = anchor; 
         } else {
           menuitem.push({itemName: anchor}); 
@@ -89,7 +64,8 @@ export const fetchMenuItem = async (
           }
         } 
       }
-      console.log(res);
+      menucat.push({catName: currCat, menuItem: menuitem})
+      res.push({mealName: currMeal, menuCat: menucat})
       setMenuItems(
           res
         ); 
