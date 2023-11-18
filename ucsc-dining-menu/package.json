@@ -16,8 +16,11 @@
     "@types/react-native-vector-icons": "*",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-breadcrumb": "*",
     "react-native-cheerio": "^1.0.0-rc.4",
+    "react-native-dropdown-picker": "^5.4.6",
     "react-native-dropdown-select-list": "*",
+    "react-native-element-dropdown": "^2.10.0",
     "react-native-elements": "*",
     "react-native-gesture-handler": "^2.10.1",
     "react-native-html-parser": "^0.1.0",
@@ -26,8 +29,7 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "*",
     "react-native-swipe-list-view": "*",
-    "react-native-vector-icons": "^9.2.0",
-    "react-native-breadcrumb": "*"
+    "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

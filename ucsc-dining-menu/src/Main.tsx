@@ -13,7 +13,7 @@ const Main : React.FC = () => {
           <NavigationContainer>
             <Stack.Navigator> 
               <Stack.Screen 
-                name="UCSC Dining Menu"
+                name="UCSC Dining Options"
                 component={DHHome}
                 options={{ 
                   headerTitleStyle: {

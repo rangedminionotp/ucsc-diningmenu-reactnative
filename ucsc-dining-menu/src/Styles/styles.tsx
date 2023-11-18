@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#000', // Set background color to black for the entire app
     padding: 15,
-    flex: 10,
+    flex: 1,
   },
   text: {
     color: '#e8b62e',
@@ -34,6 +34,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFD700',
     padding: 10,
+  },
+  locationsBorder: {
+    borderWidth: 2,  // Set the border width
+    borderColor: '#FFD700',  // Set the border color
+    borderRadius: 5, // Optional: Set border radius for rounded corners
   },
   greyText: { 
     borderWidth: 1,
@@ -90,5 +95,8 @@ export default StyleSheet.create({
     height: 1,
     backgroundColor: '#ccc', // Adjust the color of the line
     marginVertical: 5, // Adjust the vertical margin
+  },
+  dropdown: {
+    backgroundColor: '#fafafa',
   },
 });

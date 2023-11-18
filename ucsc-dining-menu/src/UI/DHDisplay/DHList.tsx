@@ -6,27 +6,29 @@ import { DHlocations as Item, DHListProps } from '../../Interfeces/DH';
 import { fetchMenuItem } from '../../Repo/MenuListRepo';
 import { DHContextProps } from '../../Model/DHViewModel';
 import { DHContext } from '../../Model/DHViewModel';
-const DHList: React.FC<{item: Item[], navigation: any }>= ({ item, navigation}) => {
-  const {setMenuItem, MenuItem} = React.useContext<DHContextProps>(DHContext);
+
+const DHList: React.FC<{ item: Item[]; navigation: any }> = ({ item, navigation }) => {
+  const { setMenuItem, MenuItem } = React.useContext<DHContextProps>(DHContext);
 
   const data: Item[] = item;
-  
+
   const renderItem = ({ item }: { item: Item }) => (
-    <TouchableOpacity 
-    onPress={
-     async ()=> {
+    <TouchableOpacity
+      onPress={async () => {
         await fetchMenuItem(item.locationURL!, setMenuItem);
-        navigation.navigate('Location', {title: item.name})  
-        }
-      }>
+        navigation.navigate('Location', { title: item.name });
+      }}
+    >
       <View style={styles.rowFront}>
-        <Text style={[styles.text, styles.greyText]} key={item.originalName}>{item.name}</Text>
+        <Text style={[styles.text, styles.greyText]} key={item.originalName}>
+          {item.name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <SwipeListView
         data={data}
         renderItem={renderItem}
@@ -35,9 +37,8 @@ const DHList: React.FC<{item: Item[], navigation: any }>= ({ item, navigation}) 
         previewOpenValue={40}
         previewOpenDelay={3000}
         disableRightSwipe
-        horizontal
       />
-    </View> 
+    </View>
   );
 };
 

@@ -1,52 +1,85 @@
 import React, { useEffect, useState } from 'react';
-import { Text, SafeAreaView, View } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { DHContext, DHContextProps } from '../../Model/DHViewModel';
 import DHList from './DHList';
-import { fetchData, fetchURL} from '../../Repo/DHListRepo';
+import { fetchURL } from '../../Repo/DHListRepo';
 import { DHlocations } from '../../Interfeces/DH';
-import styles from '../../Styles/styles';
- const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
-    const [DHitem, setDHItem] = React.useState<DHlocations[]>([]);
-    const [Cafeitem, setCafeItem] = React.useState<DHlocations[]>([]);
-    const [Otheritem, setOtherItem] = React.useState<DHlocations[]>([]);
-    
-  const { DH, setDH} = React.useContext<DHContextProps>(DHContext);
-  
+import styles from '../../Styles/styles'; 
+
+const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const [DHitem, setDHItem] = React.useState<DHlocations[]>([]);
+  const [Cafeitem, setCafeItem] = React.useState<DHlocations[]>([]);
+  const [Otheritem, setOtherItem] = React.useState<DHlocations[]>([]);
+  const { DH, setDH } = React.useContext<DHContextProps>(DHContext);
   const [loading, setLoading] = useState(true);
+
+  const [showDiningHalls, setShowDiningHalls] = useState(true);
+  const [showCafesMarkets, setShowCafesMarkets] = useState(true);
 
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        await fetchURL(setDH); 
+        await fetchURL(setDH);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
         setLoading(false);
       }
-    };
-
+    }; 
     fetchDataAsync();
   }, []);
-  
-    useEffect(() => { 
-        setDHItem(DH.slice(0, 5));
-        setCafeItem(DH.slice(6, 17));
-        setOtherItem(DH.slice(18, 21));  
-    }, [DH]);
 
-  if (loading) { 
+  useEffect(() => {
+    setDHItem(DH.slice(0, 5));
+    setCafeItem(DH.slice(6, 17));
+    setOtherItem(DH.slice(18, 21));
+  }, [DH]);
+
+  if (loading) {
     return <Text>Loading...</Text>;
   }
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Dining Halls</Text>
-      <DHList item={DHitem} navigation={navigation} />
-      <Text style={styles.title}>Cafes & Markets</Text>
-      <DHList item={Cafeitem} navigation={navigation}/>
-      {/* <Text style={styles.title}>Others</Text>
-      <DHList item={Otheritem} />   */}
+  const renderItem = () => (
+    <View>
+      <TouchableOpacity
+        onPress={() => setShowDiningHalls(!showDiningHalls)}
+        style={{ marginBottom: 20 }}
+      >
+    <View style={{...styles.locationsBorder, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Text style={styles.title}>
+        Dining Halls
+      </Text>
+      <Text style={styles.title}>
+        {showDiningHalls ? '➴' : '➵'}
+      </Text>
     </View>
+      </TouchableOpacity>
+      {showDiningHalls && <DHList item={DHitem} navigation={navigation} />}
+
+      <TouchableOpacity
+        onPress={() => setShowCafesMarkets(!showCafesMarkets)}
+        style={{ marginBottom: 20 }}
+      >
+        <View style={{...styles.locationsBorder, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Text style={styles.title}>
+          Cafes & Markets
+          </Text>
+          <Text style={styles.title}>
+            {showCafesMarkets ? '➴' : '➵'}
+          </Text>
+        </View>
+      </TouchableOpacity>
+      {showCafesMarkets && <DHList item={Cafeitem} navigation={navigation} />}
+    </View>
+  );
+
+  return (
+    <FlatList
+      data={[2]} // some random placeholder, dw about it
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      style={styles.container}
+    />
   );
 };
 

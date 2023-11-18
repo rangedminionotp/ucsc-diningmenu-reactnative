@@ -19,7 +19,7 @@ const MenuHome: React.FC<{ navigation: any }> = ({ navigation }) => {
   const filteredMenuItems = selectedItem === null ? MenuItem : MenuItem.filter(item => item.mealName === selectedItem);
 
   return (  
-    <View>
+    <View >
       <MenuBreadcrumb items={breadcrumbItems} onItemPress={handleBreadcrumbPress} />
       <MenuList data={filteredMenuItems} navigation={navigation} />
     </View>
