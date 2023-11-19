@@ -2,7 +2,7 @@ const url = 'https://dining.ucsc.edu/eat/index.html';
 const menuURL = 'https://nutrition.sa.ucsc.edu/location.aspx';
 
 const cheerio = require('react-native-cheerio')
-import { DHlocations } from "../Interfeces/DH";
+import { DHlocations } from "../../Interfeces/DH";
 import { Dispatch, SetStateAction } from 'react';
 
 

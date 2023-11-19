@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import styles from '../../Styles/styles';
+import styles from '../../Styles/MenuStyles';
 interface BreadcrumbProps {
   items: string[];
   onItemPress: (index: number) => void;

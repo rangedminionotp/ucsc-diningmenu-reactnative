@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import { MenuItemMeals, MenuCats } from '../../Interfeces/Menu';
-import styles from '../../Styles/styles';
+import styles from '../../Styles/MenuStyles';
 
 const MenuList: React.FC<{ data: any, navigation: any }> = ({ data, navigation }) => {
   const [hiddenCategories, setHiddenCategories] = useState<string[]>([]);
 
-  const handleCategoryPress = (category: string) => {
+  const handleCategoryPress = (mealName: string, category: string) => {
+    // Create a unique identifier for the category within the meal
+    const categoryId = `${mealName}-${category}`;
+  
     // Toggle the hidden state of the category
     setHiddenCategories((prev) =>
-      prev.includes(category) ? prev.filter((cat) => cat !== category) : [...prev, category]
+      prev.includes(categoryId) ? prev.filter((cat) => cat !== categoryId) : [...prev, categoryId]
     );
   };
 
@@ -20,11 +23,11 @@ const MenuList: React.FC<{ data: any, navigation: any }> = ({ data, navigation }
         item.menuCat.map((cat: MenuCats, index: number) => (
           <TouchableOpacity
             key={index}
-            onPress={() => handleCategoryPress(cat.catName)}
+            onPress={() => handleCategoryPress(item.mealName, cat.catName)}
             style={styles.categoryContainer}
           >
             <Text style={styles.categoryText}>{cat.catName}</Text>
-            {hiddenCategories.includes(cat.catName) ? null : (
+            {hiddenCategories.includes(`${item.mealName}-${cat.catName}`) ? null : (
               cat.menuItem &&
               cat.menuItem.map((menuItem, index) => (
                 <Text key={index} style={styles.menuItemText}>

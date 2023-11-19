@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { DHContext, DHContextProps } from '../../Model/DHViewModel';
 import DHList from './DHList';
-import { fetchURL } from '../../Repo/DHListRepo';
+import { fetchURL } from '../../Repo/DHList/DHListRepo';
 import { DHlocations } from '../../Interfeces/DH';
-import styles from '../../Styles/styles'; 
-
+import styles from '../../Styles/DHstyles'; 
+import DatePicker from '../Common/DatePicker/DatePicker';
 const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [DHitem, setDHItem] = React.useState<DHlocations[]>([]);
   const [Cafeitem, setCafeItem] = React.useState<DHlocations[]>([]);
@@ -41,6 +41,7 @@ const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   const renderItem = () => (
     <View>
+      <DatePicker />
       <TouchableOpacity
         onPress={() => setShowDiningHalls(!showDiningHalls)}
         style={{ marginBottom: 20 }}

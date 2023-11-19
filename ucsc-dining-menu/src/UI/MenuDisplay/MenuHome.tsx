@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Text, SafeAreaView, View } from 'react-native';
-import styles from '../../Styles/styles';
+import styles from '../../Styles/DHstyles';
 import { DHContextProps, DHContext } from '../../Model/DHViewModel';
-import { fetchMenuItem } from '../../Repo/MenuListRepo';
+import { fetchMenuItem } from '../../Repo/MenuList/MenuListRepo';
 import MenuList from './MenuList';
 import MenuBreadcrumb from './MenuBreadcrumb';
 const MenuHome: React.FC<{ navigation: any }> = ({ navigation }) => {
