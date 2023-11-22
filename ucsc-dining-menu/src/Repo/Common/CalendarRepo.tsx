@@ -29,7 +29,7 @@ class CalendarGenerator extends React.Component<CalendarGeneratorProps> {
 
     // Fill in the days from the previous month
     for (let i = firstDay - 1; i >= 0; i--) {
-      calendar[rowsIndex][i] = prevDays - (firstDay - i) + 1;
+      calendar[rowsIndex][i] = 0
       total++;
     }
 

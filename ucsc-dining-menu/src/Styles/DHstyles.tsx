@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#000', // Set background color to black for the entire app
+    backgroundColor: '#141414', // Set background color to black for the entire app
     padding: 15,
     flex: 1,
   },

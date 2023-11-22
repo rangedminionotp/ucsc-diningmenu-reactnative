@@ -6,7 +6,11 @@ import { fetchURL } from '../../Repo/DHList/DHListRepo';
 import { DHlocations } from '../../Interfeces/DH';
 import styles from '../../Styles/DHstyles'; 
 import DatePicker from '../Common/DatePicker/DatePicker';
+import { useTheme } from '@react-navigation/native';
+
 const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const colors = useTheme().colors;
+  
   const [DHitem, setDHItem] = React.useState<DHlocations[]>([]);
   const [Cafeitem, setCafeItem] = React.useState<DHlocations[]>([]);
   const [Otheritem, setOtherItem] = React.useState<DHlocations[]>([]);
@@ -23,6 +27,7 @@ const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
+        console.log('Error fetching data:')
         setLoading(false);
       }
     }; 
