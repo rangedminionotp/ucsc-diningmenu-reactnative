@@ -10,7 +10,7 @@ const MenuList: React.FC<{ data: any, navigation: any }> = ({ data, navigation }
     // Create a unique identifier for the category within the meal
     const categoryId = `${mealName}-${category}`;
   
-    // Toggle the hidden state of the category
+    // Toggle the visibility of the category
     setHiddenCategories((prev) =>
       prev.includes(categoryId) ? prev.filter((cat) => cat !== categoryId) : [...prev, categoryId]
     );

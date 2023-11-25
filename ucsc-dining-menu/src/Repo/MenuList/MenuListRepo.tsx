@@ -6,11 +6,16 @@ import { MenuItems } from '../../Interfeces/Menu';
 
 export const fetchMenuItem = async (
   menuURL: string,
+  todayDate: Date,
   setMenuItems: Dispatch<SetStateAction<MenuItemMeals[]>>
 ) => {
   try {
-    const response = await fetch(menuURL);
-
+    
+    const month = todayDate.getMonth() + 1
+    const day = todayDate.getDate()
+    const year = todayDate.getFullYear()
+    const newURL = `${menuURL}&WeeksMenus=UCSC+-+This+Week%27s+Menus&myaction=read&dtdate=${month}%2f${day}%2f${year}`
+    const response = await fetch(newURL);
     if (response.ok) {
       const htmlContent = await response.text();
       const $ = cheerio.load(htmlContent); 

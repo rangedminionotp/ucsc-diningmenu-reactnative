@@ -16,30 +16,35 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 15, 
+    paddingHorizontal: 15,
+    justifyContent: 'center', 
+    backgroundColor: '#3d3d3d',
+    borderRadius: 5,  
   },
   crumbContainer: {
     marginRight: 10,
+    alignItems: 'center',
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5, 
   },
   selectedCrumbContainer: {
-    backgroundColor: '#e0e0e0' 
+    backgroundColor: '#2e2d2d', 
+    color: 'white'
   },
   crumb: {
-    color: 'blue',
+    color: 'white',
     fontSize: 15,
   },
-  menuListContainer: { 
-    backgroundColor: '#fff',
+  menuListContainer: {  
   },
   menuCategory: {
     marginBottom: 20,
   },
   categoryContainer: {
     backgroundColor: '#f0f0f0',
-  
+    justifyContent: 'center', 
+    alignItems: 'center',
     borderRadius: 8,
     marginBottom: 10,
   },

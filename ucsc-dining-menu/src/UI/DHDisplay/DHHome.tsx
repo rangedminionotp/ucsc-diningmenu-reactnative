@@ -26,8 +26,7 @@ const DHHome: React.FC<{ navigation: any }> = ({ navigation }) => {
         await fetchURL(setDH);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
-        console.log('Error fetching data:')
+      } finally { 
         setLoading(false);
       }
     }; 

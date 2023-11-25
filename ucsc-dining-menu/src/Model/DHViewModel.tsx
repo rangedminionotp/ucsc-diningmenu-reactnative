@@ -11,8 +11,8 @@ export interface DHContextProps {
   setMenuItem: Dispatch<SetStateAction<MenuItemMeals[]>>; 
   DH: DHlocations[],
   setDH: Dispatch<SetStateAction<DHlocations[]>>;
-  CurrDH : string,
-  setCurrDH: Dispatch<SetStateAction<string>>;
+  CurrDH : DHlocations | null,
+  setCurrDH: Dispatch<SetStateAction<DHlocations>>;
   CurrDate: Date,
   setCurrDate: Dispatch<SetStateAction<Date>>;
   todayDate: Date,
@@ -24,7 +24,7 @@ const initialContext: DHContextProps = {
   setMenuItem: () => {},
   DH: [],
   setDH:() => {},
-  CurrDH: '',
+  CurrDH: null,
   setCurrDH: ()=>{},
   CurrDate: new Date(),
   setCurrDate:()=>{},
@@ -37,7 +37,7 @@ export const DHContext = createContext<DHContextProps>(initialContext);
 export const DHViewModel: React.FC<DHViewModelProps> = (props) => {
   const [MenuItem, setMenuItem] = useState<MenuItemMeals[]>([]); 
   const [DH, setDH] = useState<DHlocations[]>([]); 
-  const [CurrDH, setCurrDH] = useState<string>(''); 
+  const [CurrDH, setCurrDH] = useState<DHlocations | null>(null); 
   const [CurrDate, setCurrDate] = useState<Date>(new Date());
   const [todayDate, setTodayDate] = useState<Date>(new Date());
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import styles from '../../Styles/MenuStyles';
+
 interface BreadcrumbProps {
   items: string[];
   onItemPress: (index: number) => void;
@@ -10,7 +11,8 @@ const MenuBreadcrumb: React.FC<BreadcrumbProps> = ({ items, onItemPress }) => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(null);
 
   const handlePress = (index: number) => {
-    setSelectedItemIndex(index);
+    // Toggle selection: If the same breadcrumb is clicked again, unselect it
+    setSelectedItemIndex((prev) => (prev === index ? null : index));
     onItemPress(index);
   };
 
@@ -25,12 +27,11 @@ const MenuBreadcrumb: React.FC<BreadcrumbProps> = ({ items, onItemPress }) => {
             selectedItemIndex === index && styles.selectedCrumbContainer,
           ]}
         >
-          <Text style={styles.crumb}>{item}</Text>
+          <Text style={selectedItemIndex === index ? styles.selectedCrumbContainer : styles.crumb}>{item}</Text>
         </TouchableOpacity>
       ))}
     </View>
   );
 };
- 
 
 export default MenuBreadcrumb;

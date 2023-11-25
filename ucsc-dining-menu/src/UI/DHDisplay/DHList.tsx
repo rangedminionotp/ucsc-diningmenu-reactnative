@@ -8,14 +8,15 @@ import { DHContextProps } from '../../Model/DHViewModel';
 import { DHContext } from '../../Model/DHViewModel';
 
 const DHList: React.FC<{ item: Item[]; navigation: any }> = ({ item, navigation }) => {
-  const { setMenuItem, MenuItem } = React.useContext<DHContextProps>(DHContext);
+  const { setMenuItem, setCurrDH, todayDate} = React.useContext<DHContextProps>(DHContext);
 
   const data: Item[] = item;
 
   const renderItem = ({ item }: { item: Item }) => (
     <TouchableOpacity
       onPress={async () => {
-        await fetchMenuItem(item.locationURL!, setMenuItem);
+        setCurrDH(item);
+        await fetchMenuItem(item.locationURL!, todayDate!, setMenuItem);
         navigation.navigate('Location', { title: item.name });
       }}
     >
